@@ -1,0 +1,100 @@
+#include <iostream>
+#include <iomanip>
+#include <vector>
+#include <string>
+using namespace std;
+
+class Aeroflot {
+	string destination;
+	string aircraftType;
+	int weekday;
+	int routeNumber;
+	int departureTime;
+
+    public:
+       Aeroflot() {
+            destination = "Unkown";
+            aircraftType = "Unkown";
+            weekday = 0;
+            routeNumber = 0;
+            departureTime = 0;
+        }
+        Aeroflot( string a, string b, int c, int d, int e) {
+            destination = a;
+            aircraftType = b;
+            weekday = c;
+            routeNumber = d;
+            departureTime = e;
+        }
+        ~Aeroflot() {}
+
+        void SetDestination(string s) {
+            destination = s;
+        }
+        void SetAircraftType(string s) {
+            aircraftType = s;
+        }
+        void Setweekday(int a) {
+            weekday = a;
+        }
+        void SetRouteNumber(int a) {
+            routeNumber = a;
+        }
+        void SetDepartureTime(int a) {
+            departureTime = a;
+        }
+
+        string GetDestination(){
+            return destination;
+        }
+        string GetAircraftType() {
+            return aircraftType;
+        }
+        int Getweekday() {
+            return weekday;
+        }
+        int GetRouteNumber() {
+            return routeNumber;
+        }
+        int GetDepartureTime() {
+            return departureTime;
+        }
+
+        void Show(){
+            cout << "Destination name: " << setw(1) << destination << endl;
+            cout << "Aircraft model: " << setw(1) << aircraftType << endl;
+            cout << "Weekday: " << setw(1) << weekday << endl;
+            cout << "Route Number: " << setw(1) << routeNumber << endl;
+            cout << "Departure Time: " << setw(1) << departureTime << endl;
+        }
+};
+
+int main() {
+	vector<Aeroflot> AeroflotArray;
+
+	Aeroflot first("Novosibirsk", "Boeing-747", 1, 1015, 1700);
+	Aeroflot second("Moscow", "Airbus-A380", 3, 4055, 1230);
+	Aeroflot third("StPetersburg", "Boeing-777", 4, 7077, 1300);
+	Aeroflot fourth("Rostov-on-Don", "MS-21", 2, 2121, 1120);
+
+	AeroflotArray.push_back(first);
+	AeroflotArray.push_back(second);
+	AeroflotArray.push_back(third);
+	AeroflotArray.push_back(fourth);
+
+	for (int i = 0; i < AeroflotArray.size(); i++) {
+		if (AeroflotArray[i].GetDestination() == "StPetersburg") {
+			AeroflotArray[i].Show();
+			cout << endl;
+		}
+		else if (AeroflotArray[i].Getweekday() == 1) {
+			AeroflotArray[i].Show();
+			cout << endl;
+		}
+		else if (AeroflotArray[i].GetDepartureTime() > 1100 and AeroflotArray[i].Getweekday() == 2)  {
+			AeroflotArray[i].Show();
+			cout << endl;
+		}
+	}
+	return 0;
+}
